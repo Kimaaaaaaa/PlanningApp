@@ -54,7 +54,7 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
         
 
         this.panelCouleur = new JPanel(new GridLayout(x, y));
-        this.panelBas = new JPanel(new FlowLayout());
+        this.panelBas = new JPanel(new GridLayout(11, 22)); //On passe sur des demies heures.
         this.panelHaut = new JPanel(new GridLayout(1, 2));
         this.panelHautDroit = new JPanel(new GridLayout(3, 1));
 
@@ -205,6 +205,7 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
 
 
         //ajout des boutons sur TB1
+        addSpace(tb1);
         this.tb1.add( btnNew );
         addSpace(tb1);
         this.tb1.add( btnSave );
@@ -216,6 +217,7 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
 
         //ajout des boutons sur TB2
 
+        addSpace(tb2);
         this.tb2.add( btnRectangle );
         addSpace(tb2);
         this.tb2.add( btnSquare );
@@ -227,6 +229,7 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
 
         //ajout des boutons sur TB3
 
+        addSpace(tb3);
         this.tb3.add( btnCopy );
         addSpace(tb3);
         this.tb3.add( btnEraser );

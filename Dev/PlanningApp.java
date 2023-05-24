@@ -108,7 +108,7 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
         Image resizedImageSuperiorTo = imgSuperiorTo.getImage().getScaledInstance(30, 20, Image.SCALE_SMOOTH);
         ImageIcon resizedIconSuperiorTo = new ImageIcon(resizedImageSuperiorTo); 
         this.btnMoveForward = new JButton(resizedIconSuperiorTo);                       
-        this.btnMoveForward.setToolTipText( "(CTRL+Z)" );
+        this.btnMoveForward.setToolTipText( "(CTRL+Y)" );
         this.btnMoveForward.addActionListener( this::btnNewListener );
         this.btnMoveForward.setBorderPainted(false);
 
@@ -240,7 +240,20 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
         addSpace(tb3);
 
 
+        //ajout des bouttons au listener
 
+        this.btnNew.addActionListener(this);  
+        this.btnSave.addActionListener(this);
+        this.btnCopy.addActionListener(this);
+        this.btnMoveBack.addActionListener(this);
+        this.btnMoveForward.addActionListener(this);
+        this.btnSquare.addActionListener(this);
+        this.btnRectangle.addActionListener(this);
+        this.btnCircle.addActionListener(this);
+        this.btnDiamond.addActionListener(this);
+        this.btnEraser.addActionListener(this);
+        this.btnFilling.addActionListener(this);
+        this.btnPen.addActionListener(this);
         
 
         //Mouse

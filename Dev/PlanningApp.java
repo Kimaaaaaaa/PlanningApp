@@ -8,7 +8,8 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
     public int y= 3;
 
     //JButton
-    private JButton [] tabButton;
+    private JButton [] tabButtonCouleur;
+    private JButton [] tabButtonPlanning;
 
     private JButton btnNew;
     private JButton btnSave;
@@ -30,33 +31,51 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
     private JPanel panelHaut;
     private JPanel panelCouleur;
     private JPanel panelBas;
+    private JPanel panelPlanning;
+
     private JPanel panelTb1;
     private JPanel panelTb2;
     private JPanel panelTb3;
-    private JPanel panelMouse;
     private JPanel panelHautDroit;
-
-    //JLabel
-    private JLabel lblPos;
 
     //Toolbar
     private JToolBar tb1;
     private JToolBar tb2;
     private JToolBar tb3;
 
+    //Color
+
+    private Color lastSelectedColor;
+
+    //Label
+    private JLabel[] tabJLabel;
+
 
 
     public PlanningApp(){
 
-        this.setLayout(new GridLayout(3, 1));
+        this.setLayout(new GridLayout(4, 1));
         this.setTitle("Palette de couleur");
         this.setSize(1920, 1080);
         
 
         this.panelCouleur = new JPanel(new GridLayout(x, y));
-        this.panelBas = new JPanel(new GridLayout(11, 22)); //On passe sur des demies heures.
+        this.panelBas = new JPanel(new GridLayout(22, 6)); //On passe sur des demies heures.
         this.panelHaut = new JPanel(new GridLayout(1, 2));
         this.panelHautDroit = new JPanel(new GridLayout(3, 1));
+        this.panelBas.setBackground(Color.LIGHT_GRAY);
+
+        //Jlabel
+
+        this.tabJLabel = new JLabel[5];
+
+        //tabButtonPlanning
+
+        this.tabButtonPlanning = new JButton[6 * 22];
+
+        //color 
+
+        this.lastSelectedColor = null;
 
 
         //ToolBar
@@ -257,21 +276,158 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
         
 
         //Mouse
-        this.panelMouse = new JPanel(new FlowLayout());
-        this.lblPos = new JLabel("Pos x :    , Pos y:     ");
         addMouseListener(this);
         
-        this.tabButton = new JButton[x*y];
+        this.tabButtonCouleur = new JButton[x*y];
         Color [] tabColor = {Color.RED, Color.BLUE, Color.GREEN, Color.PINK, Color.ORANGE, Color.YELLOW, Color.CYAN, Color.GRAY, Color.BLACK, Color.WHITE, Color.LIGHT_GRAY, Color.DARK_GRAY}; 
 
         for(int i = 0; i < x*y; i++)
         {   
             JButton button = new JButton("");
             button.setBackground(tabColor[i]);
-            this.tabButton[i] = button;
-            tabButton[i].addActionListener(this);  
+            this.tabButtonCouleur[i] = button;
+            tabButtonCouleur[i].addActionListener(this);  
             this.panelCouleur.add(button);
         }
+
+        this.tabButtonPlanning = new JButton[5*22];
+        this.tabJLabel = new JLabel[5];
+
+
+        this.tabJLabel[0] = new JLabel("                          Lundi");
+        this.tabJLabel[0].setFont(new Font("Serif", Font.BOLD, 20));
+        this.tabJLabel[1] = new JLabel("                          Mardi");
+        this.tabJLabel[1].setFont(new Font("Serif", Font.BOLD, 20));
+        this.tabJLabel[2] = new JLabel("                          Mercredi");
+        this.tabJLabel[2].setFont(new Font("Serif", Font.BOLD, 20));
+        this.tabJLabel[3] = new JLabel("                          Jeudi");
+        this.tabJLabel[3].setFont(new Font("Serif", Font.BOLD, 20));
+        this.tabJLabel[4] = new JLabel("                          Vendredi");
+        this.tabJLabel[4].setFont(new Font("Serif", Font.BOLD, 20));
+
+        this.panelBas.add(this.tabJLabel[0]);
+        this.panelBas.add(this.tabJLabel[1]);
+        this.panelBas.add(this.tabJLabel[2]);
+        this.panelBas.add(this.tabJLabel[3]);
+        this.panelBas.add(this.tabJLabel[4]);
+        
+
+        for(int i = 0; i < 110; i++)
+        {
+            /*if(i == 5 || i == 11 || i == 17|| i == 23 || i ==29 || i == 35 || i == 41 || i == 47 || i== 53 || i == 59 || i == 65|| i == 71 || i ==77|| 
+               i == 83 || i ==90 || i == 96 || i == 102 || i == 108)
+               {
+                 switch(i)
+                 {  
+                    case 5 : {
+                        this.panelBas.add(new JLabel("8h30"));
+                    }
+                    case 11 : {
+                        this.panelBas.add(new JLabel("9h00"));
+                    }
+
+                    case 17 : {
+                        this.panelBas.add(new JLabel("9h30"));
+                    }
+
+                    case 23 : {
+                        this.panelBas.add(new JLabel("10h00"));
+                    }
+
+                    case 29 : {
+                        this.panelBas.add(new JLabel("10h30"));
+                    }
+                
+                    case 35 : {
+                        this.panelBas.add(new JLabel("11h00"));
+                    }
+
+                    case 41 : {
+                        this.panelBas.add(new JLabel("11h30"));
+                    }
+
+                    case 47 : {
+                        this.panelBas.add(new JLabel("12h00"));
+                    }
+
+                    case 53 : {
+                        this.panelBas.add(new JLabel("12h30"));
+                    }
+
+                    
+                    case 59 : {
+                        this.panelBas.add(new JLabel("14h00"));
+                    }
+                    
+                    case 65 : {
+                        this.panelBas.add(new JLabel("14h30"));
+                    }
+
+                    
+                    case 71 : {
+                        this.panelBas.add(new JLabel("15h00"));
+                    }
+
+                    
+                    case 77 : {
+                        this.panelBas.add(new JLabel("15h30"));
+                    }
+
+                    
+                    case 83 : {
+                        this.panelBas.add(new JLabel("16h00"));
+                    }
+
+                    
+                    case 90 : {
+                        this.panelBas.add(new JLabel("16h30"));
+                    }
+
+                    
+                    case 96 : {
+                        this.panelBas.add(new JLabel("17h00"));
+                    }
+
+                    
+                    case 102 : {
+                        this.panelBas.add(new JLabel("17h30"));
+                    }
+
+                    
+                    case 108 : {
+                        this.panelBas.add(new JLabel("18h00"));
+                    }
+
+                    
+  
+
+
+                 }
+               }
+               if(i == 109)
+               {
+                break;
+               }
+               */
+                        
+            this.tabButtonPlanning[i] = new JButton("");
+            this.panelBas.add(this.tabButtonPlanning[i]);
+            this.tabButtonPlanning[i].addActionListener(this);
+        
+
+        }
+        
+        
+        
+        
+
+    
+
+        /*for(int i = 6; i < 6 * 22; i++)
+        {
+
+        }
+        */
 
         this.panelHaut.add(this.panelCouleur);
         this.panelTb1.add(this.tb1);
@@ -281,8 +437,7 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
         this.panelHautDroit.add(this.panelTb2);
         this.panelHautDroit.add(this.panelTb3);
         this.panelHaut.setBounds(0, 0, 1685, 80);
-        this.panelBas.setBounds(0, 81, 1685, 800);
-        this.lblPos.setBounds(0, 882, 200, 200);
+        this.panelBas.setBounds(0, 81, 1685, 1000);
         //this.panelTb1.setLayout(null);
         //Ajouter les éléments du panel Haut droit ici
 
@@ -290,7 +445,6 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
         this.panelHaut.add(this.panelHautDroit);
         this.add(this.panelHaut);
         this.add(this.panelBas);
-        this.add(this.lblPos);
         this.setLayout(null);
         this.setVisible(true);
 
@@ -306,22 +460,44 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
     }
 
     //event
+    public void reset()
+    {
+        for(int i = 0; i < 110; i++)
+        {
+            System.out.println("bonjour");
+            
+            this.tabButtonPlanning[i].setText(" ");
+            this.tabButtonPlanning[i].setBackground(Color.WHITE);
+            
+        }
+    }
+
 
     public void actionPerformed(ActionEvent e)
     {
         for(int i = 0; i < 12; i++)
         {
-            if(e.getSource() == this.tabButton[i])
+            if(e.getSource() == this.tabButtonCouleur[i])
             {
-                majBackground(this.tabButton[i].getBackground());
+                this.lastSelectedColor = this.tabButtonCouleur[i].getBackground();
+                System.out.println("Couleur selectionné : " + lastSelectedColor);
             }
         }
+
+        for(int i = 0; i < 110; i++)
+        if(e.getSource() == this.tabButtonPlanning[i])
+        {
+            this.tabButtonPlanning[i].setBackground(this.lastSelectedColor);
+        }
+
+        if(e.getSource() == this.btnNew)
+        {
+            reset();
+        }
+
+        
     }
 
-    public void majBackground(Color c)
-    {
-        this.panelBas.setBackground(c);
-    }
     public static void main(String [] args)
     {
         new PlanningApp(); 
@@ -330,18 +506,9 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
     private void btnNewListener( ActionEvent event ) {
         JOptionPane.showMessageDialog( this, "Button clicked !" );
     }
-    //mouse listener
-
-    public void newFrame(int x, int y)
-    {
-        this.lblPos.setText("Pos x : " + x + "Pos y : " + y);
-        this.add(this.lblPos);
-    }
 
     public void mouseClicked(MouseEvent e)
     {
-        System.out.println("Validé !");
-        newFrame(e.getX(), e.getY());
 
         
     }

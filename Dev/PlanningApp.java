@@ -314,105 +314,131 @@ public class PlanningApp extends JFrame implements ActionListener, MouseListener
 
         for(int i = 0; i < 110; i++)
         {
-            /*if(i == 5 || i == 11 || i == 17|| i == 23 || i ==29 || i == 35 || i == 41 || i == 47 || i== 53 || i == 59 || i == 65|| i == 71 || i ==77|| 
-               i == 83 || i ==90 || i == 96 || i == 102 || i == 108)
+            if(i == 0)
+            {
+                i++;
+            }
+
+
+            if(i == 7 || i == 13 || i == 19|| i == 25 || i ==31 || i == 37 || i == 43 || i == 49 || i== 55 || i == 61 || i == 67|| i == 73 || i ==79|| 
+               i == 85 || i ==91 || i == 97 || i == 103 || i == 109)
                {
                  switch(i)
                  {  
-                    case 5 : {
-                        this.panelBas.add(new JLabel("8h30"));
-                    }
-                    case 11 : {
+                    case 7 : {
                         this.panelBas.add(new JLabel("9h00"));
+                        break;
                     }
 
-                    case 17 : {
+                    case 13 : {
                         this.panelBas.add(new JLabel("9h30"));
+                        break;
                     }
 
-                    case 23 : {
+                    case 19 : {
                         this.panelBas.add(new JLabel("10h00"));
+                        break;
                     }
 
-                    case 29 : {
+                    case 25 : {
                         this.panelBas.add(new JLabel("10h30"));
+                        break;
                     }
                 
-                    case 35 : {
+                    case 31 : {
                         this.panelBas.add(new JLabel("11h00"));
+                        break;
                     }
 
-                    case 41 : {
+                    case 37 : {
                         this.panelBas.add(new JLabel("11h30"));
+                        break;
                     }
 
-                    case 47 : {
+                    case 43 : {
                         this.panelBas.add(new JLabel("12h00"));
+                        break;
                     }
 
-                    case 53 : {
+                    case 49 : {
                         this.panelBas.add(new JLabel("12h30"));
+                        break;
                     }
 
                     
-                    case 59 : {
+                    case 55 : {
                         this.panelBas.add(new JLabel("14h00"));
+                        break;
                     }
                     
-                    case 65 : {
+                    case 61 : {
                         this.panelBas.add(new JLabel("14h30"));
+                        break;
                     }
 
                     
-                    case 71 : {
+                    case 67 : {
                         this.panelBas.add(new JLabel("15h00"));
+                        break;
                     }
 
                     
-                    case 77 : {
+                    case 73 : {
                         this.panelBas.add(new JLabel("15h30"));
+                        break;
                     }
 
                     
-                    case 83 : {
+                    case 79 : {
                         this.panelBas.add(new JLabel("16h00"));
+                        break;
                     }
 
                     
-                    case 90 : {
+                    case 85 : {
                         this.panelBas.add(new JLabel("16h30"));
+                        break;
                     }
 
                     
-                    case 96 : {
+                    case 91 : {
                         this.panelBas.add(new JLabel("17h00"));
+                        break;
                     }
 
                     
-                    case 102 : {
+                    case 97 : {
                         this.panelBas.add(new JLabel("17h30"));
+                        break;
                     }
 
                     
-                    case 108 : {
+                    case 103 : {
                         this.panelBas.add(new JLabel("18h00"));
+                        break;
                     }
 
                     
-  
+                    case 109 : {
+                        this.panelBas.add(new JLabel("18h30"));
+                        break;
+                    }
 
-
-                 }
+                
+                }
                }
-               if(i == 109)
+               else if(i == 109)
                {
                 break;
                }
-               */
+               else{
+                    this.tabButtonPlanning[i] = new JButton("D'index : " + i );
+                    this.panelBas.add(this.tabButtonPlanning[i]);
+                    this.tabButtonPlanning[i].addActionListener(this);
+               }
+               
                         
-            this.tabButtonPlanning[i] = new JButton("");
-            this.panelBas.add(this.tabButtonPlanning[i]);
-            this.tabButtonPlanning[i].addActionListener(this);
+
         
 
         }
